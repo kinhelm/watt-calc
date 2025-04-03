@@ -1,0 +1,13 @@
+{
+  "@@locale": "fr",
+  "appTitle": "WattCalc",
+  "batterySizeLabel": "Taille de la batterie (kWh)",
+  "percentageRemainingLabel": "Pourcentage restant (%)",
+  "targetPercentageLabel": "Pourcentage cible (%)",
+  "pricePerKwLabel": "Prix du kWh (€)",
+  "chargingPowerLabel": "Puissance de la borne (kW)",
+  "calculateButton": "Calculer",
+  "kwBought": "kW achetés: {kwNeeded} kWh",
+  "totalCost": "Coût total: {cost} €",
+  "estimatedTime": "Temps estimé: {time}"
+}
