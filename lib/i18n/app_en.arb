@@ -9,5 +9,8 @@
   "calculateButton": "Calculate",
   "kwBought": "kW bought: {kwNeeded} kWh",
   "totalCost": "Total cost: {cost} €",
-  "estimatedTime": "Estimated time: {time}"
+  "estimatedTime": "Estimated time: {time}",
+  "home": "Home",
+  "parameters": "Parameters",
+  "save": "Save"
 }

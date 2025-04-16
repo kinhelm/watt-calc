@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:WattCalc/theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'i18n/app_localizations.dart';
 import 'screens/watt_calc_screen.dart';
 
 void main() {

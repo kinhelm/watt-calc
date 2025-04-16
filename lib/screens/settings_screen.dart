@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../i18n/app_localizations.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -36,7 +37,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Paramètres')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.parameters)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -75,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 _saveData();
                 Navigator.pop(context, true);
               },
-              child: Text('Enregistrer'),
+              child: Text(AppLocalizations.of(context)!.save),
             ),
           ],
         ),

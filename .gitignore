@@ -12,6 +12,9 @@
 .swiftpm/
 migrate_working_dir/
 
+# Translations
+lib/i18n/app_localizations*
+
 # IntelliJ related
 *.iml
 *.ipr

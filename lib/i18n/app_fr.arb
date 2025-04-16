@@ -9,5 +9,8 @@
   "calculateButton": "Calculer",
   "kwBought": "kW achetés: {kwNeeded} kWh",
   "totalCost": "Coût total: {cost} €",
-  "estimatedTime": "Temps estimé: {time}"
+  "estimatedTime": "Temps estimé: {time}",
+  "home": "Accueil",
+  "parameters": "Paramètres",
+  "save": "Enregistrer"
 }

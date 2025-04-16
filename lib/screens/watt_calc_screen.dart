@@ -1,7 +1,8 @@
 import 'package:WattCalc/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../i18n/app_localizations.dart';
 
 class WattCalcScreen extends StatefulWidget {
   const WattCalcScreen({super.key});
@@ -100,35 +101,28 @@ class _WattCalcScreenState extends State<WattCalcScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.appTitle),
-      ),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.appTitle)),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-              ),
+              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
               child: Text(
                 AppLocalizations.of(context)!.appTitle,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
+                style: TextStyle(color: Colors.white, fontSize: 24),
               ),
             ),
             ListTile(
               leading: Icon(Icons.home),
-              title: Text('Accueil'),
+              title: Text(AppLocalizations.of(context)!.home),
               onTap: () {
                 Navigator.pop(context); // Ferme le menu
               },
             ),
             ListTile(
               leading: Icon(Icons.settings),
-              title: Text('Paramètres'),
+              title: Text(AppLocalizations.of(context)!.parameters),
               onTap: () async {
                 Navigator.pop(context); // Ferme le menu
                 final result = await Navigator.push(
@@ -160,7 +154,8 @@ class _WattCalcScreenState extends State<WattCalcScreen> {
                       controller: _targetPercentageController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.targetPercentageLabel,
+                        labelText:
+                            AppLocalizations.of(context)!.targetPercentageLabel,
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -195,13 +190,35 @@ class _WattCalcScreenState extends State<WattCalcScreen> {
               child: Text(AppLocalizations.of(context)!.calculateButton),
             ),
             SizedBox(height: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(AppLocalizations.of(context)!.estimatedTime(_time)),
-                Text(AppLocalizations.of(context)!.kwBought(_kwNeeded)),
-                Text(AppLocalizations.of(context)!.totalCost(_cost)),
-              ],
+            Card(
+              elevation: 4,
+              margin: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.estimatedTime(_time),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      AppLocalizations.of(context)!.kwBought(_kwNeeded),
+                      style: TextStyle(fontSize: 16, color: Colors.black87),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      AppLocalizations.of(context)!.totalCost(_cost),
+                      style: TextStyle(fontSize: 16, color: Colors.green),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
