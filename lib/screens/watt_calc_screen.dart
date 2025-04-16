@@ -1,3 +1,4 @@
+import 'package:WattCalc/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,10 +40,8 @@ class _WattCalcScreenState extends State<WattCalcScreen> {
 
   void _saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('batterySize', _batterySizeController.text);
     prefs.setString('percentageRemaining', _percentageRemainingController.text);
     prefs.setString('pricePerKw', _pricePerKwController.text);
-    prefs.setString('chargingPower', _chargingPowerController.text);
     prefs.setString('targetPercentage', _targetPercentageController.text);
   }
 
@@ -98,9 +97,55 @@ class _WattCalcScreenState extends State<WattCalcScreen> {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppLocalizations.of(context)!.appTitle)),
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.appTitle),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Text(
+                AppLocalizations.of(context)!.appTitle,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Accueil'),
+              onTap: () {
+                Navigator.pop(context); // Ferme le menu
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Paramètres'),
+              onTap: () async {
+                Navigator.pop(context); // Ferme le menu
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsScreen(),
+                  ),
+                );
+
+                if (result == true) {
+                  _loadData();
+                }
+              },
+            ),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -111,24 +156,6 @@ class _WattCalcScreenState extends State<WattCalcScreen> {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    TextField(
-                      controller: _batterySizeController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.batterySizeLabel,
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    TextField(
-                      controller: _chargingPowerController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.chargingPowerLabel,
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    SizedBox(height: 10),
                     TextField(
                       controller: _targetPercentageController,
                       keyboardType: TextInputType.number,
